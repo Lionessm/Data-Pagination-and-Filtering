@@ -10,10 +10,9 @@ FSJS Project 2 - Data Pagination and Filtering
 
 function showPage(list, page) {
     // Create two variables
-    // startIndex = (page parameter * items per page) - items per page
-    // const startIndex =
-    // endIndex = page parameter * items per page
-
+    let itemsPerPage = 9;
+    let startIndex = (page * itemsPerPage) - itemsPerPage;
+    let endIndex = page * itemsPerPage;
 
     let firstStudent = list[0];
     let lastStudent = list[41];
