@@ -9,16 +9,20 @@ FSJS Project 2 - Data Pagination and Filtering
 
 
 function showPage(list, page) {
+    // Create two variables
+    // startIndex = (page parameter * items per page) - items per page
+    // const startIndex =
+    // endIndex = page parameter * items per page
+
 
     let firstStudent = list[0];
     let lastStudent = list[41];
-    var element1 = document.querySelector(".student-list");
+
+    var studentList = document.querySelector(".student-list");
     // set the innerHTML property of the variable you just created to an empty string
-    element1.innerHTML = " ";
-    // loop over the length of the `list` parameter
-    console.log(list)
+    studentList.innerHTML = " ";
 
-
+        // loop over the length of the `list` parameter
         for (var i = 0; i < list.length; i++) {
             // inside the loop create a conditional to display the proper students
 
@@ -45,7 +49,6 @@ function showPage(list, page) {
                 containerDiv.className = "student-details";
                 var containerList = document.createElement('li')
                 containerList.className = "student-item cf";
-                var studentList = document.querySelector(".student-list");
                 const containerDivDate = document.createElement('div')
                 containerDivDate.classNAme = "joined-details";
 
@@ -63,12 +66,9 @@ function showPage(list, page) {
         }
     }
 
-showPage(data, 1);
+let page = 0;
+showPage(data, page);
 
-// Create two variables
-// startIndex = (page parameter * items per page) - items per page
-// const startIndex =
-// endIndex = page parameter * items per page
 
 
 //Next use the querySelector method to select the UL element with a class of student-list and assign it to a new variable named studentList.
