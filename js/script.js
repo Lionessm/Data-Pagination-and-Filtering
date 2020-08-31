@@ -7,6 +7,19 @@ Treehouse Techdegree:
 FSJS Project 2 - Data Pagination and Filtering
 */
 
+function createStudentLi(student) {
+    return `<li class="student-item cf">
+        <div class="student-details">
+            <img class="avatar" src="${student.picture.medium}" alt="Profile Picture"/>
+            <h3>${student.name.first} ${student.name.last}</h3>
+            <span class="email">${student.email}</span>
+        </div>
+        <div class="joined-details">
+            <span class="date">Joined ${student.registered.date}</span>
+        </div>
+    </li>`;
+}
+
 
 function showPage(list, page) {
     // Create two variables
@@ -17,65 +30,42 @@ function showPage(list, page) {
     let firstStudent = list[0];
     let lastStudent = list[41];
 
-    var studentList = document.querySelector(".student-list");
+    const studentList = document.querySelector(".student-list");
     // set the innerHTML property of the variable you just created to an empty string
     studentList.innerHTML = " ";
 
         // loop over the length of the `list` parameter
-        for (var i = 0; i < list.length; i++) {
+        for (let i = 0; i < list.length; i++) {
             // inside the loop create a conditional to display the proper students
-
             if (list[i] !== null) {
-                // inside the conditional:
-                // create the elements needed to display the student information
-                // insert the above elements
-                var studentName = document.createElement("h3");
-                studentName.textContent = list[i].name.first + ' ' + list[i].name.last;
 
-                var studentEmail = document.createElement("span");
-                studentEmail.className = "email";
-                studentEmail.textContent = list[i].email;
-
-                var studentImage = document.createElement("img");
-                studentImage.className = "avatar";
-                studentImage.src = "https://randomuser.me/api/portraits/women/25.jpg"
-
-                var joined = document.createElement('span');
-                joined.className = "date"
-                joined.textContent = list[i].registered.date;
-
-                var containerDiv = document.createElement('div')
-                containerDiv.className = "student-details";
-                var containerList = document.createElement('li')
-                containerList.className = "student-item cf";
-                const containerDivDate = document.createElement('div')
-                containerDivDate.classNAme = "joined-details";
-
-
-                containerDiv.appendChild(studentImage);
-                containerDiv.appendChild(studentEmail);
-                containerDiv.appendChild(studentName);
-                containerList.appendChild(containerDiv);
-                studentList.appendChild(containerList);
-                containerList.appendChild(containerDivDate);
-                containerList.appendChild(joined);
-
-
+                if (i >= startIndex && i < endIndex) {
+                    // inside the conditional:
+                    // create the elements needed to display the student information
+                    // insert the above elements
+                    const createdStudentLi = createStudentLi(list[i]);
+                    studentList.insertAdjacentHTML("beforeend", createdStudentLi);
+                }
             }
         }
     }
 
-let page = 0;
+let page = 1;
 showPage(data, page);
+
+// Create a button
+// On click on the button
+    // page = page + 1;
+    // call showPage(data, page);
 
 
 
 //Next use the querySelector method to select the UL element with a class of student-list and assign it to a new variable named studentList.
 //This is the element we will be adding our student data to.
-const studentList = document.querySelector("ul.student-list");
+//const studentList = document.querySelector("ul.student-list");
 
 //Now set the innerHTML property of the studentList variable to an empty string. This will remove any existing students that might have been displayed previously.
-//studentList.innerHTML = " ";
+//studentList.innerHTML = "";
 // Next we will create a for loop that will run once for each object in the list parameter. We can do this by using the length property of list.
 
 //Inside the loop, create a conditional statement that checks if i is greater than or equal to the startIndex variable and less than the endIndex variable. The student at these indexes are the ones we want to display on the page.
