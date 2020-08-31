@@ -7,6 +7,8 @@ Treehouse Techdegree:
 FSJS Project 2 - Data Pagination and Filtering
 */
 
+let itemsPerPage = 9;
+
 function createStudentLi(student) {
     return `<li class="student-item cf">
         <div class="student-details">
@@ -20,10 +22,13 @@ function createStudentLi(student) {
     </li>`;
 }
 
+/*
+Create the `showPage` function
+This function will create and insert/append the elements needed to display a "page" of nine students
+*/
 
 function showPage(list, page) {
     // Create two variables
-    let itemsPerPage = 9;
     let startIndex = (page * itemsPerPage) - itemsPerPage;
     let endIndex = page * itemsPerPage;
 
@@ -53,30 +58,42 @@ function showPage(list, page) {
 let page = 1;
 showPage(data, page);
 
-// Create a button
-// On click on the button
-    // page = page + 1;
-    // call showPage(data, page);
+/*
+Create the `addPagination` function
+This function will create and insert/append the elements needed for the pagination buttons
+*/
 
+function addPagination(list) {
+    // create a variable to calculate the number of pages needed
+    let numOfPages = Math.ceil(list.length / itemsPerPage)
 
+    // select the element with a class of `link-list` and assign it to a variable
+    let linkList = document.querySelector('.link-list');
 
-//Next use the querySelector method to select the UL element with a class of student-list and assign it to a new variable named studentList.
-//This is the element we will be adding our student data to.
-//const studentList = document.querySelector("ul.student-list");
+    // set the innerHTML property of the variable you just created to an empty string
+    linkList.innerHTML = '';
 
-//Now set the innerHTML property of the studentList variable to an empty string. This will remove any existing students that might have been displayed previously.
-//studentList.innerHTML = "";
-// Next we will create a for loop that will run once for each object in the list parameter. We can do this by using the length property of list.
+    // loop over the number of pages needed
+    for (let i = 1; i <= numOfPages; i++) {
+        const button = `<li>
+            <button type="button"> 1 </button>
+        </li>`;
 
-//Inside the loop, create a conditional statement that checks if i is greater than or equal to the startIndex variable and less than the endIndex variable. The student at these indexes are the ones we want to display on the page.
+        linkList.insertAdjacentHTML("beforeend", button)
+    }
 
-//If that condition is met, we will create the DOM elements needed to display the student at that index, which we will assign to a variable named studentItem. We will create these elements using a template literal.
-//Use bracket notation to access the student object at that index and dot notation to access the specific properties of that student object. The end result should be elements that look like this:
+    // create the elements needed to display the pagination button
+    // insert the above elements
 
+    // give the first pagination button a class of "active"
 
-
-
-
+    // create an event listener on the `link-list` element
+    // if the click target is a button:
+    // remove the "active" class from the previous button
+    // add the active class to the clicked button
+    // call the showPage function passing the `list` parameter and page to display as arguments
+}
+addPagination(data);
 
 
 
@@ -89,19 +106,6 @@ For assistance:
    Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
 */
 
-
-
-/*
-Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
-*/
-
-
-
-/*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
-*/
 
 
 
